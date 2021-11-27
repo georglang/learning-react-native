@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native';
 
+// When a parent rerenders all childs will be rerendered as well
+
 const HomeScreen = ({ navigation }) => {
   console.log('Home Screen', navigation);
   return (
@@ -14,6 +16,7 @@ const HomeScreen = ({ navigation }) => {
       <Button onPress={() => navigation.navigate('Images')} title="To Image Screen" />
       <Button onPress={() => navigation.navigate('Counter')} title="To Counters" />
       <Button onPress={() => navigation.navigate('Color')} title="To Color" />
+      <Button onPress={() => navigation.navigate('Square')} title="To Square" />
     </View>
   );
 };
