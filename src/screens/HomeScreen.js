@@ -17,6 +17,7 @@ const HomeScreen = ({ navigation }) => {
       <Button onPress={() => navigation.navigate('Counter')} title="To Counters" />
       <Button onPress={() => navigation.navigate('Color')} title="To Color" />
       <Button onPress={() => navigation.navigate('Square')} title="To Square" />
+      <Button onPress={() => navigation.navigate('Box')} title="To Box" />
     </View>
   );
 };
