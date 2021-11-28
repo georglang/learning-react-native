@@ -1,6 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+// Box Object Model
+
+// The width / height of an element + the space around it
+// padding, border, margin
+// Use this to affect the positioning of a single element
+
+// --------------------------------------------------------
+
 // Flex Box
 
 // Parent Properties:
@@ -48,6 +56,27 @@ import { StyleSheet, Text, View } from 'react-native';
 // Properties:
 // flex-start, flex-end, center
 
+// --------------------------------------------------------------------
+
+// Position
+
+// How a single element gets laid out inside of a parent
+// Use this to override Box Object Model + Flex Box
+
+// relative:
+// By default every element that we place has a position property with
+// the value 'relative', that means just do things as usual
+
+// absolute:
+// makes a given element to be completely ignored by it´s siblings
+// the element than obeys some flex box rules set by the parent
+
+// Properties: Top, Right, Bottom, Left
+// are going to add in a little bit of extra spacing
+// between one element and a sibling
+// no other siblings will be affected
+// showing a portion of child 2 ontop of child 3
+
 const BoxScreen = () => {
   return (
     <View style={styles.viewStyle}>
@@ -60,25 +89,26 @@ const BoxScreen = () => {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: 'black',
-    height: 200,
+    height: 300,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   child1Style: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: 'red',
+    height: 80,
   },
   child2Style: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: 'red',
-    alignSelf: 'stretch',
+    height: 80,
+    left: 40
   },
   child3Style: {
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: 'red',
+    height: 80,
   },
 });
 
