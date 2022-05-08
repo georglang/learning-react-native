@@ -13,7 +13,7 @@ const reducer = (state, action) => {
     case 'increment':
       return { ...state, count: state.count + action.payload };
     case 'decrement':
-      return { ...state, count: state.count - action.payload };
+      return state.count > 0 ? { ...state, count: state.count - action.payload } : state;
     default:
       return state;
   }
