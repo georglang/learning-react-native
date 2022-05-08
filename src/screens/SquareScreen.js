@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
 import ColorCounter from '../components/ColorCounter';
 
@@ -15,28 +15,64 @@ import ColorCounter from '../components/ColorCounter';
 // to the state value in the parent component
 
 // Square Screen needs to read the three different state values
+const COLOR_INCREMENT = 10;
+
+// by convention the reducer function is defined outside of
+// our component.
+// argument 1 is our current state object
+// argument 2 is the object that describes how we´re supposed to change
+// our state object --> it describes the update we want to make
+// By convention the second argument is called 'action'
+
+const reducer = (state, action) => {
+  // reminder what the arguments are look like
+  // state  === { red: number, green: number, blue: number }
+  // action === { type: 'change_red' || 'change_green' || 'change_blue', payload: 15 || -15 }
+
+  switch (action.type) {
+    case 'change_red':
+      // never going to to state.red = state.red - 15
+      return state.red + action.payload > 255 || state.red + action.payload < 0
+        ? state
+        : { ...state, red: state.red + action.payload };
+    case 'change_green':
+      return state.green + action.payload > 255 || state.green + action.payload < 0
+        ? state
+        : { ...state, green: state.green + action.payload };
+    case 'change_blue':
+      return state.blue + action.payload > 255 || state.blue + action.payload < 0
+        ? state
+        : { ...state, blue: state.blue + action.payload };
+    default:
+      return state;
+  }
+};
 
 const SquareScreen = () => {
+  const initialStateObject = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
 
-  const COLOR_INCREMENT = 10;
-
-
+  const [state, dispatch] = useReducer(reducer, initialStateObject);
+  const { red, green, blue } = state;
 
   return (
     <View>
       <ColorCounter
-        onIncrease={() => }
-        onDecrease={() => }
+        onIncrease={() => dispatch({ type: 'change_red', payload: COLOR_INCREMENT })}
+        onDecrease={() => dispatch({ type: 'change_red', payload: -1 * COLOR_INCREMENT })}
         color="Red"
       />
       <ColorCounter
-        onIncrease={() => }
-        onDecrease={() => }
+        onIncrease={() => dispatch({ type: 'change_green', payload: COLOR_INCREMENT })}
+        onDecrease={() => dispatch({ type: 'change_green', payload: -1 * COLOR_INCREMENT })}
         color="Green"
       />
       <ColorCounter
-        onIncrease={() => }
-        onDecrease={() => }
+        onIncrease={() => dispatch({ type: 'change_blue', payload: COLOR_INCREMENT })}
+        onDecrease={() => dispatch({ type: 'change_blue', payload: -1 * COLOR_INCREMENT })}
         color="Blue"
       />
 
