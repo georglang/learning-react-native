@@ -77,7 +77,6 @@ import { StyleSheet, Text, View } from 'react-native';
 // no other siblings will be affected
 // showing a portion of child 2 ontop of child 3
 
-
 // Tipps:
 
 // If you want that some element completley fill out
@@ -87,42 +86,38 @@ import { StyleSheet, Text, View } from 'react-native';
 // 2. set top, right, bottom and left: 0.
 // shorthand for this is ...StyleSheet.absoluteFillObject
 
-
 const BoxScreen = () => {
   return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.child1Style}>Child 1</Text>
-      <Text style={styles.child2Style}>Child 2 Child 2</Text>
-      <Text style={styles.child3Style}>Child 3</Text>
+    <View style={styles.parentStyle}>
+      <View style={styles.child1Style}></View>
+      <View style={styles.child2Style}></View>
+      <View style={styles.child3Style}></View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  viewStyle: {
+  parentStyle: {
     borderWidth: 1,
     borderColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   child1Style: {
-    borderWidth: 1,
-    borderColor: 'red',
-    height: 80,
+    backgroundColor: 'red',
+    height: 50,
+    width: 50,
   },
   child2Style: {
-    borderWidth: 3,
-    borderColor: 'green',
-    // position: 'absolute',
-    // top: 0,
-    // right: 0,
-    // bottom: 0,
-    // left: 0
-
-    // same as the above commented out
-    ...StyleSheet.absoluteFillObject
+    backgroundColor: 'green',
+    height: 50,
+    width: 50,
+    marginTop: 80
   },
   child3Style: {
-    borderWidth: 1,
-    borderColor: 'red',
+    backgroundColor: 'purple',
+    height: 50,
+    width: 50,
   },
 });
 
